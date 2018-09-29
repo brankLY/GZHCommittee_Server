@@ -1,1 +1,1 @@
-This is a committee project for GZH.
+This is a committee server project for GZH.
