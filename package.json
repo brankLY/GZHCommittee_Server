@@ -1,0 +1,36 @@
+{
+  "name": "GZHCommittee",
+  "version": "0.0.1",
+  "description": "use to develop GZH project",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "shipit staging deploy"
+  },
+  "repository": {
+    "url": "https://github.com/XDMu/GZHCommittee.git",
+    "type": "git"
+  },
+  "author": "brankLY",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "0.18.0",
+    "body-parser": "1.18.3",
+    "cors": "2.8.4",
+    "debug": "3.1.0",
+    "express": "4.16.3",
+    "express-bearer-token": "2.1.1",
+    "express-jwt": "5.3.1",
+    "fabric-ca-client": "1.1.2",
+    "fabric-client": "1.1.2",
+    "moment": "2.22.2",
+    "morgan": "1.9.0",
+    "swagger-ui-dist": "3.17.0"
+  },
+  "devDependencies": {
+    "shipit-cli": "4.1.1",
+    "shipit-deploy": "4.1.1",
+    "chai": "4.1.2",
+    "chai-as-promised": "7.1.1",
+    "chai-http": "4.0.0"
+  }
+}
