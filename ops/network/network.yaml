@@ -1,0 +1,93 @@
+---
+name: "FutureBureau"
+x-type: "hlfv1"
+
+type: "hl-fabric@^1.0.0"
+description: "Basic Network of two orgs for FutureBureau development"
+version: 1.0.0
+
+channels:
+  mychannel:
+    orderers:
+      - orderer.example.com
+    peers:
+      peer0.org1.example.com:
+        # [Optional]. will this peer be sent transaction proposals for endorsement? The peer must
+        # have the chaincode installed. The src can also use this property to decide which peers
+        # to send the chaincode install request. Default: true
+        endorsingPeer: true
+
+        # [Optional]. will this peer be sent query proposals? The peer must have the chaincode
+        # installed. The src can also use this property to decide which peers to send the
+        # chaincode install request. Default: true
+        chaincodeQuery: true
+
+        # [Optional]. will this peer be sent query proposals that do not require chaincodes, like
+        # queryBlock(), queryTransaction(), etc. Default: true
+        ledgerQuery: true
+
+        # [Optional]. will this peer be the target of the SDK's listener registration? All peers can
+        # produce events but the src typically only needs to connect to one to listen to events.
+        # Default: true
+        eventSource: true
+      peer0.org2.example.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+    chaincodes:
+      # the format follows the "cannonical name" (ccId:ccVersion) of chaincodes by fabric code
+      - mycc:v1
+
+organizations:
+  Org1:
+    mspid: Org1MSP
+
+    peers:
+      - peer0.org1.example.com
+    adminPrivateKey:
+      path: ops/network/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/ac92f3d1d62ad8ad3bb700ce7a3b7001466cf752fc142212b78c9be2d3ffd2b3_sk
+    signedCert:
+      path: ops/network/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem
+
+  Org2:
+    mspid: Org2MSP
+    peers:
+      - peer0.org2.example.com
+    adminPrivateKey:
+      path: ops/network/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore/55317203f44acff861227a2ff2b1be75e14c033f7ff8dcd06703e96f3fb7ea9c_sk
+    signedCert:
+      path: ops/network/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/Admin@org2.example.com-cert.pem
+
+orderers:
+  orderer.example.com:
+    url: grpc://localhost:7050
+
+    grpcOptions:
+      ssl-target-name-override: orderer.example.com
+
+    tlsCACerts:
+      path: ops/network/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/ca.crt
+
+peers:
+  peer0.org1.example.com:
+    # this URL is used to send endorsement and query requests
+    url: grpc://localhost:7051
+
+    # this URL is used to connect the EventHub and registering event listeners
+    eventUrl: grpc://localhost:7053
+
+    grpcOptions:
+      ssl-target-name-override: peer0.org1.example.com
+      grpc.http2.keepalive_time: 15
+
+    tlsCACerts:
+      path: ops/network/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+
+  peer0.org2.example.com:
+    url: grpc://localhost:8051
+    eventUrl: grpc://localhost:8053
+    grpcOptions:
+      ssl-target-name-override: peer0.org2.example.com
+    tlsCACerts:
+      path: ops/network/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt

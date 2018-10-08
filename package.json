@@ -4,14 +4,41 @@
   "description": "use to develop GZH project",
   "main": "index.js",
   "scripts": {
-    "deploy": "shipit staging deploy"
+    "deploy": "shipit staging deploy",
+    "rollback": "shipit staging rollback",
+    "dappswagger": "shipit staging dappswagger",
+    "bc:tearDown": "shipit staging tearDown",
+    "bc:setup": "shipit staging setup",
+    "bc:upgrade": "shipit staging bc:upgrade",
+    "api:build": "shipit staging api:build",
+    "api:setup": "shipit staging api:setup",
+    "upgradeBc": "./ops/scripts/upgrade.sh",
+    "startServer": "./ops/scripts/start.sh",
+    "build": "./ops/scripts/build.sh",
+    "setup": "./ops/scripts/setup.sh",
+    "tearDown": "./ops/scripts/tearDown.sh",
+    "tsc": "tsc && cp src/config/*.yaml dist/config/",
+    "tsc:w": "tsc -w",
+    "test": "nyc mocha --reporter spec --timeout 10000 --require ts-node/register 'test/**/*.test.ts'",
+    "start": "node dist/index.js",
+    "dev": "DEBUG=DappJupiter* PORT=3001 MSP_URL=http://127.0.0.1:3002/api/v1 node $NODE_DEBUG_OPTION dist/index.js"
   },
   "repository": {
-    "url": "https://github.com/XDMu/GZHCommittee.git",
-    "type": "git"
+    "type": "git",
+    "url": "git+ssh://git@github.com/XDMu/GZHCommittee_Server.git"
   },
-  "author": "brankLY",
-  "license": "MIT",
+  "keywords": [
+    "rest-server",
+    "hyperledger",
+    "fabric",
+    "fabric-sdk-node"
+  ],
+  "author": "BrankLY",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://github.com/XDMu/GZHCommittee_Server/issues"
+  },
+  "homepage": "https://github.com/XDMu/GZHCommittee_Server#readme",
   "dependencies": {
     "axios": "0.18.0",
     "body-parser": "1.18.3",
@@ -24,13 +51,57 @@
     "fabric-client": "1.1.2",
     "moment": "2.22.2",
     "morgan": "1.9.0",
-    "swagger-ui-dist": "3.17.0"
+    "swagger-ui-dist": "3.17.0",
+    "mathjs": "4.4.1"
   },
   "devDependencies": {
-    "shipit-cli": "4.1.1",
-    "shipit-deploy": "4.1.1",
+    "@types/body-parser": "1.17.0",
+    "@types/bytebuffer": "5.0.37",
+    "@types/chai": "4.1.3",
+    "@types/chai-as-promised": "7.1.0",
+    "@types/chai-http": "3.0.4",
+    "@types/cors": "2.8.4",
+    "@types/debug": "0.0.30",
+    "@types/express": "4.16.0",
+    "@types/express-jwt": "0.0.40",
+    "@types/mocha": "5.2.2",
+    "@types/morgan": "1.7.35",
+    "@types/node": "10.1.2",
     "chai": "4.1.2",
     "chai-as-promised": "7.1.1",
-    "chai-http": "4.0.0"
+    "chai-http": "4.0.0",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb-base": "12.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "mocha": "5.2.0",
+    "nodemon": "1.17.5",
+    "nyc": "11.8.0",
+    "shipit-cli": "4.1.1",
+    "shipit-deploy": "4.1.1",
+    "ts-node": "6.0.4",
+    "typescript": "2.8.3",
+    "typescript-eslint-parser": "16.0.0"
+  },
+  "nyc": {
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "sourceMap": true,
+    "instrument": true,
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "src/index.ts",
+      "src/interface/*.ts"
+    ],
+    "all": true
   }
 }

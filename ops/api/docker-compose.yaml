@@ -1,0 +1,19 @@
+version: '2'
+services:
+    dappjupiter:
+        container_name: dappjupiter
+        image: dappjupiter
+        restart: always
+        ports:
+            - 3002:3002
+
+    dappswagger:
+        container_name: dappswagger
+        image: swaggerapi/swagger-ui
+        environment:
+            - SWAGGER_JSON=/opt/dappswagger/dappswagger.yaml
+        working_dir: /opt/dappswagger/Dapp
+        ports:
+            - 8081:8080
+        volumes:
+            - ./dappswagger.yaml:/opt/dappswagger/dappswagger.yaml
