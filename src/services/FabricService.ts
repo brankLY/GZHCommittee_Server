@@ -5,7 +5,7 @@ import {
 } from 'fabric-client';
 import * as debug from 'debug';
 
-const LOG: debug.IDebugger = debug('DappJupiter:FabricService');
+const LOG: debug.IDebugger = debug('GZHCommittee_Server:FabricService');
 
 function transactionMonitor(eventHub, txId) {
   return new Promise((resolve, reject) => {

@@ -1,19 +1,19 @@
 version: '2'
 services:
-    dappjupiter:
-        container_name: dappjupiter
-        image: dappjupiter
+    gzhcommittee_server:
+        container_name: gzhcommittee_server
+        image: gzhcommittee_server
         restart: always
         ports:
             - 3002:3002
 
-    dappswagger:
-        container_name: dappswagger
+    gzhcommittee_serverswagger:
+        container_name: gzhcommittee_serverswagger
         image: swaggerapi/swagger-ui
         environment:
-            - SWAGGER_JSON=/opt/dappswagger/dappswagger.yaml
-        working_dir: /opt/dappswagger/Dapp
+            - SWAGGER_JSON=/opt/gzhcommittee_serverswagger/gzhcommittee_serverswagger.yaml
+        working_dir: /opt/gzhcommittee_serverswagger/Dapp
         ports:
             - 8081:8080
         volumes:
-            - ./dappswagger.yaml:/opt/dappswagger/dappswagger.yaml
+            - ./gzhcommittee_serverswagger.yaml:/opt/gzhcommittee_serverswagger/gzhcommittee_serverswagger.yaml

@@ -10,8 +10,8 @@ module.exports = shipit => {
       keepReleases: 10,
       deleteOnRollback: false,
       branch: 'master',
-      deployTo: '/home/ubuntu/api/Dapp',
-      repositoryUrl: 'git@github.com:XDMu/DappJupiter.git',
+      deployTo: '/home/ubuntu/api/gzhcommittee_server',
+      repositoryUrl: 'git@github.com:XDMu/GZHCommittee_Server.git',
     },
     staging: {
       servers: 'ubuntu@dev',
@@ -24,17 +24,17 @@ module.exports = shipit => {
     console.log('Run "yarn bc:tearDown" to destory blockchain network');
     console.log('Run "yarn bc:setup" to re-start blockchain network');
     console.log('Run "yarn bc:upgrade" to upgrade blockchain network');
-    console.log('Run "yarn api:build" to build new DappJupiter docker image');
-    console.log('Run "yarn api:setup" to destory and re-start DappJupiter docker container');
+    console.log('Run "yarn api:build" to build new GZHCommittee_Server docker image');
+    console.log('Run "yarn api:setup" to destory and re-start GZHCommittee_Server docker container');
     console.log('#######################');
   });
 
-  shipit.task('dappswagger', async() => {
+  shipit.task('gzhcommittee_serverswagger', async() => {
     const baseDir = shipit.config.deployTo;
-    const dockerComposePath = util.format('%s/current/ops/dappswagger/docker-compose.yaml', baseDir);
+    const dockerComposePath = util.format('%s/current/ops/gzhcommittee_serverswagger/docker-compose.yaml', baseDir);
     await shipit.remote(util.format('docker-compose -f %s down', dockerComposePath));
     await shipit.remote(util.format('docker-compose -f %s up -d', dockerComposePath));
-    await shipit.remote('docker ps -a | grep "dappswagger"')
+    await shipit.remote('docker ps -a | grep "gzhcommittee_serverswagger"')
   });
 
   shipit.task('tearDown', async () => {

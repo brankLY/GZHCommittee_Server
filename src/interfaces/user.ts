@@ -16,4 +16,3 @@ export interface IUserInfo {
   // mspId
   mspId?: string;
 }
-

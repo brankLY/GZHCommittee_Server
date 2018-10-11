@@ -12,6 +12,6 @@ RUN yarn && \
 
 EXPOSE 3002
 
-ENV DEBUG=DappJupiter*
+ENV DEBUG=GZHCommittee_Server*
 ENV PORT=3002
 CMD yarn start

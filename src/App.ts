@@ -6,12 +6,10 @@ import * as JWT from 'express-jwt';
 import { getResponse } from './utils/Response';
 import bearerToken = require('express-bearer-token');
 
-import UserRouter from './routers/user.router';
-import AdminRouter from './routers/admin.router';
+import CommitteeRouter from './routers/committee.router';
+import MemberRouter from './routers/member.router';
+import ProposalRouter from './routers/proposal.router';
 import AuthRouter from './routers/auth.router';
-import IdentityRouter from './routers/identity.router';
-import TokenRouter from './routers/token.router';
-import BureauRouter from './routers/bureau.router';
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -48,12 +46,10 @@ class App {
   
   // Configure API endpoints.
   private routes(): void {
-    this.express.use('/api/v1/account', UserRouter);
-    this.express.use('/api/v1/grant', AdminRouter);
-    this.express.use('/api/v1/identity', IdentityRouter);
+    this.express.use('/api/v1/committee', CommitteeRouter);
+    this.express.use('/api/v1/member', MemberRouter);
+    this.express.use('/api/v1/proposal', ProposalRouter);
     this.express.use('/api/v1/auth', AuthRouter);
-    this.express.use('/api/v1/token', TokenRouter);
-    this.express.use('/api/v1/bureau', BureauRouter);
   }
 }
 

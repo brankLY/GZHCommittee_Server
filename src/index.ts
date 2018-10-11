@@ -3,11 +3,11 @@ import * as debug from 'debug';
 
 import App from './App';
 
-const log = debug('DappJupiter:Server');
+const log = debug('GZHCommittee_Server:Server');
 
 async function startServer() {
   try {
-    const port = normalizePort(process.env.PORT || 3002);
+    const port = normalizePort(process.env.PORT || 3003);
     App.set('port', port);
     const server = http.createServer(App);
     server.listen(port);

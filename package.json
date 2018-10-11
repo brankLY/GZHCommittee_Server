@@ -6,7 +6,7 @@
   "scripts": {
     "deploy": "shipit staging deploy",
     "rollback": "shipit staging rollback",
-    "dappswagger": "shipit staging dappswagger",
+    "gzhcommittee_serverswagger": "shipit staging gzhcommittee_serverswagger",
     "bc:tearDown": "shipit staging tearDown",
     "bc:setup": "shipit staging setup",
     "bc:upgrade": "shipit staging bc:upgrade",
@@ -21,7 +21,7 @@
     "tsc:w": "tsc -w",
     "test": "nyc mocha --reporter spec --timeout 10000 --require ts-node/register 'test/**/*.test.ts'",
     "start": "node dist/index.js",
-    "dev": "DEBUG=DappJupiter* PORT=3001 MSP_URL=http://127.0.0.1:3002/api/v1 node $NODE_DEBUG_OPTION dist/index.js"
+    "dev": "DEBUG=GZHCommittee_Server* PORT=3003 MSP_URL=http://127.0.0.1:3003/api/v1 node $NODE_DEBUG_OPTION dist/index.js"
   },
   "repository": {
     "type": "git",
