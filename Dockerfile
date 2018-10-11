@@ -10,8 +10,8 @@ RUN yarn && \
     yarn tsc && \
     yarn cache clean
 
-EXPOSE 3002
+EXPOSE 3003
 
 ENV DEBUG=GZHCommittee_Server*
-ENV PORT=3002
+ENV PORT=3003
 CMD yarn start
