@@ -5,7 +5,7 @@ services:
         image: gzhcommittee_server
         restart: always
         ports:
-            - 3002:3002
+            - 3003:3003
 
     gzhcommittee_serverswagger:
         container_name: gzhcommittee_serverswagger
