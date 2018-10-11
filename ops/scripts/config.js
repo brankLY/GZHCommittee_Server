@@ -5,7 +5,7 @@ function sleep(ms) {
 }
 
 
-const chaincodeId = '5813dc05-c645-4cb2-ad73-159a9375517b';
+const chaincodeId = '8f3a4ce9-df5b-46f6-905a-17446d6cfc01';
 const chaincodeVersion = 'v1';
 const chaincodePath = path.resolve(__dirname, '../../chaincode');
 
