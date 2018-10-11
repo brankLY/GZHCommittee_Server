@@ -4,8 +4,8 @@
 # blockchain network that are necessary for the applications to interact with it. These are all
 # knowledge that must be acquired from out-of-band sources. This file provides such a source.
 #
-name: "FutureBureau"
-description: "Basic Network of two orgs for FutureBureau development"
+name: "GZH_Committee"
+description: "Basic Network of two orgs for GZH_Committee development"
 version: 1.0.0
 
 #

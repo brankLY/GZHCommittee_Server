@@ -4,14 +4,14 @@
 # blockchain network that are necessary for the applications to interact with it. These are all
 # knowledge that must be acquired from out-of-band sources. This file provides such a source.
 #
-name: "FutureBureau"
+name: "GZH_Committee"
 
 #
 # Describes the type of the backend, "hl-fabric" for Hyperledger Fabric, "hl-stl" for Hyperledger
 # Sawtooth Lake, etc.
 #
 type: "hl-fabric@^1.0.0"
-description: "Basic Network of two orgs for FutureBureau development"
+description: "Basic Network of two orgs for GZH_Committee development"
 version: 1.0.0
 
 #

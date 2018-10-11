@@ -1,9 +1,9 @@
 ---
-name: "FutureBureau"
+name: "GZH_Committee"
 x-type: "hlfv1"
 
 type: "hl-fabric@^1.0.0"
-description: "Basic Network of two orgs for FutureBureau development"
+description: "Basic Network of two orgs for GZH_Committee development"
 version: 1.0.0
 
 channels:

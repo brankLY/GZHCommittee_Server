@@ -55,7 +55,7 @@ export class FabricService {
       this.configs = FabricNetConfigPath;
     }
     
-    this.chaincodeId = '5813dc05-c645-4cb2-ad73-159a9375517b';
+    this.chaincodeId = '8f3a4ce9-df5b-46f6-905a-17446d6cfc01';
     this.queryTargets = [ 'peer0.org1.example.com' ];
     this.client = this.loadConfig();
     this.channel = this.client.getChannel();
