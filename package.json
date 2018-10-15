@@ -21,7 +21,7 @@
     "tsc:w": "tsc -w",
     "test": "nyc mocha --reporter spec --timeout 10000 --require ts-node/register 'test/**/*.test.ts'",
     "start": "node dist/index.js",
-    "dev": "DEBUG=GZHCommittee_Server* PORT=3003 MSP_URL=http://127.0.0.1:3003/api/v1 node $NODE_DEBUG_OPTION dist/index.js"
+    "dev": "DEBUG=GZHCommittee_Server* PORT=3003 MSP_URL=http://127.0.0.1:3001/api/v1 node $NODE_DEBUG_OPTION dist/index.js"
   },
   "repository": {
     "type": "git",
