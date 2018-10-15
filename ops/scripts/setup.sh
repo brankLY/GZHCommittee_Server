@@ -24,11 +24,11 @@ git clone $CHAINCODE_URL $CHAINCODE_DIR
 rm -rf $CHAINCODE_DIR/.git
 
 
-# echo
-# echo "##### Join Channel #####"
-# echo
-# DEBUG=bc:* node $PARENT_DIR/join-channel.js
-# echo
+echo
+echo "##### Join Channel #####"
+echo
+DEBUG=bc:* node $PARENT_DIR/join-channel.js
+echo
 
 echo
 echo "##### Install Chaincode #####"

@@ -10,8 +10,8 @@ module.exports = shipit => {
       keepReleases: 10,
       deleteOnRollback: false,
       branch: 'master',
-      deployTo: '/home/ubuntu/api/gzhcommittee_server',
-      repositoryUrl: 'git@github.com:XDMu/GZHCommittee_Server.git',
+      deployTo: '/home/ubuntu/api/GZHCommittee_server',
+      repositoryUrl: 'git@github.com:XDMu/GZHCommittee_server.git',
     },
     staging: {
       servers: 'ubuntu@dev',
