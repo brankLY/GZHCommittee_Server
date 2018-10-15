@@ -15,10 +15,10 @@ async function install() {
 
     const request = {
       txId: client1.newTransactionID(true),
-      chaincodeId: Consts.chaincode.chaincodeId,
+      chaincodeId: Consts.chaincodeId,
       chaincodeType: 'node',
-      chaincodePath: Consts.chaincode.chaincodePath,
-      chaincodeVersion: Consts.chaincode.chaincodeVersion,
+      chaincodePath: Consts.chaincodePath,
+      chaincodeVersion: Consts.chaincodeVersion,
       channelNames: Consts.channelName,
     };
     let resp = await client1.installChaincode(request);

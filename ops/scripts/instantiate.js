@@ -22,11 +22,11 @@ async function instantiate() {
     // instantiate on org1
     const request = {
       txId: client1.newTransactionID(true),
-      chaincodeId: Consts.chaincode.chaincodeId,
+      chaincodeId: Consts.chaincodeId,
       chaincodeType: 'node',
-      chaincodeVersion: Consts.chaincode.chaincodeVersion,
+      chaincodeVersion: Consts.chaincodeVersion,
       targets: ['peer0.org1.example.com'],
-      args: ['install', Consts.chaincode.contractAccountId],
+      args: ['install'],
     };
     const tx1 = request.txId;
     const promises = [];
