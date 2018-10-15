@@ -18,7 +18,7 @@ if [ -d $CHAINCODE_DIR ]; then
 fi
 
 
-CHAINCODE_URL="git@github.com:XDMu/GZHCommittee_Contract.git"
+CHAINCODE_URL="git@github.com:XDMu/SampleDapp.git"
 
 echo "##### Clone Chaincode to ops/chaincode #####"
 git clone $CHAINCODE_URL $CHAINCODE_DIR
