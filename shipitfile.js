@@ -46,7 +46,7 @@ module.exports = shipit => {
   shipit.task('setup', async () => {
     const baseDir = shipit.config.deployTo;
     const currentDir = util.format('%s/current/', baseDir);
-    await shipit.remote(util.format('cd %s && yarn setup', currentDir));
+    await shipit.remote(util.format('cd %s && yarn && yarn setup', currentDir));
   });
 
   shipit.task('bc:upgrade', async () => {
@@ -58,7 +58,7 @@ module.exports = shipit => {
   shipit.task('api:build', async () => {
     const baseDir = shipit.config.deployTo;
     const currentDir = util.format('%s/current/', baseDir);
-    await shipit.remote(util.format('cd %s && sudo yarn build', currentDir));
+    await shipit.remote(util.format('cd %s && yarn build', currentDir));
   });
 
   shipit.task('api:setup', async () => {
