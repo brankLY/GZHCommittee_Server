@@ -49,7 +49,12 @@ export class Validator {
     if (!options.target) {
       throw new Error(format('%j is not a valid CreateProposalRequest Object, Missing Required property %s', options, 'target'));
     }
-
+    if (!options.description) {
+      throw new Error(format('%j is not a valid CreateProposalRequest Object, Missing Required property %s', options, 'description'));
+    }
+    if (!options.deadline) {
+      throw new Error(format('%j is not a valid CreateProposalRequest Object, Missing Required property %s', options, 'deadline'));
+    }
     LOG('%s - Valid. Exit', method);
   
     let amount = options.amount;
@@ -57,9 +62,16 @@ export class Validator {
       amount = parseFloat(options.amount);
     }
 
+    let deadline = options.deadline;
+    if (typeof options.deadline === 'string') {
+      deadline = parseFloat(options.deadline);
+    }
+
     return {
       amount: amount,
+      deadline: deadline,
       target: options.target,
+      description: options.description
     };
   }
   
@@ -71,6 +83,9 @@ export class Validator {
     }
     if (!options.proposalId) {
       throw new Error(format('%j is not a valid VoteProposalRequest Object, Missing Required property %s', options, 'proposalId'));
+    }
+    if (!options.choice) {
+      throw new Error(format('%j is not a valid VoteProposalRequest Object, Missing Required property %s', options, 'choice'));
     }
     LOG('%s - Valid. Exit', method);
 
