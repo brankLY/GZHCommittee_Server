@@ -86,6 +86,7 @@ export class Validator {
 
     return {
       proposalId: options.proposalId,
+      choice:options.choice,
     };
   }
 }
