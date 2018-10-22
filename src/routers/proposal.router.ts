@@ -7,7 +7,7 @@ import { FabricService } from '../services/FabricService';
 import { getResponse } from '../utils/Response';
 import { ICreateProposalRequest, IVoteProposalRequest } from '../interfaces/proposal';
 
-const LOG = debug('GZHCommittee_Server:router:Token');
+const LOG = debug('GZHCommittee_Server:router');
 
 class ProposalRouter {
   public router: Router;
