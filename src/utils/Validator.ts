@@ -62,14 +62,9 @@ export class Validator {
       amount = parseFloat(options.amount);
     }
 
-    let deadline = options.deadline;
-    if (typeof options.deadline === 'string') {
-      deadline = parseFloat(options.deadline);
-    }
-
     return {
       amount: amount,
-      deadline: deadline,
+      deadline: options.deadline,
       target: options.target,
       description: options.description
     };

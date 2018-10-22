@@ -196,8 +196,8 @@ components:
           type: string
           description: 目标
         deadline:
-          type: number
-          description: 截止期限（以天数计数，例如3，代表3天后截止）
+          type: string
+          description: 截止期限
         description:
           type: string
           description: 提案描述

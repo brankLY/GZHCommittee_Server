@@ -1,7 +1,7 @@
 export interface ICreateProposalRequest {
     amount: number;
     target: string;
-    deadline: number;
+    deadline: string;
     description: string;
 }
 
