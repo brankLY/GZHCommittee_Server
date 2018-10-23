@@ -11,3 +11,7 @@ export interface IVoteProposalRequest {
     proposalId: string;
     choice: string;
 }
+
+export interface IQueryProposalRequest {
+    proposalId: string;
+}
