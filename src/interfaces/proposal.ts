@@ -7,6 +7,7 @@ export interface ICreateProposalRequest {
 }
 
 export interface IVoteProposalRequest {
+	accountId:string;
     proposalId: string;
     choice: string;
 }

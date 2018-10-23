@@ -63,7 +63,7 @@ class ProposalRouter {
       LOG('%s - Enter.', method);
       LOG('%s - request body: %O', method, req.body);
 
-      const voteProposalRequest: IVoteProposalRequest = Validator.VALIDATE_VOTE_PROPOSAL_REQUEST(req.body);
+      let voteProposalRequest: IVoteProposalRequest = Validator.VALIDATE_VOTE_PROPOSAL_REQUEST(req.body);
       LOG('%s - Request Body Validate Passed, vote proposal request: %O', method, voteProposalRequest);
 
       let userInfo: IUserInfo;
@@ -82,6 +82,7 @@ class ProposalRouter {
 
       LOG('%s - Create Token at bc', method);
       const fabricService = new FabricService();
+      voteProposalRequest.accountId = userInfo.id;
       const bcResp = await fabricService.invoke('proposal.vote', [JSON.stringify(voteProposalRequest)], registry);
 
       LOG('%s - Exit. 200', method);

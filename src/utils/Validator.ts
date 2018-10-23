@@ -87,6 +87,7 @@ export class Validator {
     LOG('%s - Valid. Exit', method);
 
     return {
+      accountId :' ',
       proposalId: options.proposalId,
       choice:options.choice,
     };
