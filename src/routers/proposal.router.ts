@@ -20,6 +20,7 @@ class ProposalRouter {
   private init() {
     this.router.post('/create', this.createProposal);
     this.router.post('/vote', this.voteProposal);
+    this.router.post('/query', this.queryProposal);
   }
 
   public async createProposal(req: Request, res: Response) {
