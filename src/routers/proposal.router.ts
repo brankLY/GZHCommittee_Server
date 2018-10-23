@@ -45,7 +45,7 @@ class ProposalRouter {
       LOG('%s - Successfully get user info from MSP', method);
       const registry = await FabricService.createUserFromPersistance(userInfo.id, userInfo.privateKey, userInfo.certificate, userInfo.mspId);
 
-      LOG('%s - Create Token at bc', method);
+      LOG('%s - Create Proposal at bc', method);
       const fabricService = new FabricService();
       const bcResp = await fabricService.invoke('proposal.create', [JSON.stringify(createProposalRequest)], registry);
 

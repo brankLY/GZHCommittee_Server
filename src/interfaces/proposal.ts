@@ -3,6 +3,7 @@ export interface ICreateProposalRequest {
     target: string;
     deadline: string;
     description: string;
+    id:string;
 }
 
 export interface IVoteProposalRequest {

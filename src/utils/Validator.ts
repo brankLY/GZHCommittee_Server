@@ -1,5 +1,6 @@
 import * as debug from 'debug';
 import { format } from 'util';
+import { IdGenerator } from '../services/IdGenerator';
 import { IInitMemberRequest } from '../interfaces/member';
 import { ICreateProposalRequest, IVoteProposalRequest } from '../interfaces/proposal';
 
@@ -66,7 +67,8 @@ export class Validator {
       amount: amount,
       deadline: options.deadline,
       target: options.target,
-      description: options.description
+      id: IdGenerator.NEW_ID(),
+      description: options.description,
     };
   }
   
