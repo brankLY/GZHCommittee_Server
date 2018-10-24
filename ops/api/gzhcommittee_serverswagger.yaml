@@ -55,6 +55,21 @@ paths:
             schema:
               $ref: '#/components/schemas/Member'
         required: true
+  /member/getAll:
+    get:
+      summary: 获取所有委员会成员
+      tags:
+        - Member
+      description: 获取所有委员会成员
+      security:
+        - Bearer: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllMemberResponse'
   /proposal/create:
     post:
       tags:
@@ -190,6 +205,17 @@ components:
                 token:
                   type: string
                   description: 登陆成功返回的JWT token
+    AllMemberResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            payload:
+              properties:
+                bureaus:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/MinusMemberuInfo'
     Member:
       type: object
       properties:
@@ -208,6 +234,17 @@ components:
         member5:
           type: string
           description: 委员五
+
+    MinusMemberuInfo:
+      type: object
+      properties:
+        id: 
+          type: string
+          description: member id
+        validity:
+          type: string
+          description: member有效性
+
     CreateProposalRequest:
       type: object
       properties:
