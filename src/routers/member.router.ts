@@ -19,7 +19,7 @@ class MemberRouter {
 
   private init() {
     this.router.post('/init', this.initMember);
-    this.router.post('/getAll', this.getAllMember);
+    this.router.get('/getAll', this.getAllMember);
   }
 
   public async initMember(req: Request, res: Response) {
