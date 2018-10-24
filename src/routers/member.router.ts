@@ -7,7 +7,7 @@ import { FabricService } from '../services/FabricService';
 import { getResponse } from '../utils/Response';
 import { IInitMemberRequest } from '../interfaces/member';
 
-const LOG = debug('GZHCommittee_Server:router:Token');
+const LOG = debug('GZHCommittee_Server:router');
 
 class MemberRouter {
   public router: Router;

@@ -55,7 +55,7 @@ paths:
             schema:
               $ref: '#/components/schemas/Member'
         required: true
-  /member/getAll:
+  /member/getAllMember:
     get:
       summary: 获取所有委员会成员
       tags:
