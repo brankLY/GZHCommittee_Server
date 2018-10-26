@@ -21,6 +21,7 @@ class ProposalRouter {
     this.router.post('/create', this.createProposal);
     this.router.post('/vote', this.voteProposal);
     this.router.post('/query', this.queryProposal);
+    this.router.get('/getAll', this.getAllProposal);
   }
 
   public async createProposal(req: Request, res: Response) {
@@ -122,6 +123,34 @@ class ProposalRouter {
 
       LOG('%s - Exit. 200', method);
       res.status(200).send(getResponse(true, 'Successfully vote proposal', bcResp));
+    } catch (e) {
+      LOG('%s - Error: ', method, e);
+      res.status(500).send(getResponse(false, e.message));
+    }
+  }
+
+  public async getAllProposal(req: Request, res: Response, next: NextFunction) {
+    const method = 'getAllProposal';
+    try {
+      LOG('%s -Enter.', method);
+      LOG('%s - request body:\n%O', method, req.body);
+  
+      let userInfo: IUserInfo;
+      try {
+        userInfo = await MspWrapper.getUser((<any>req).token);
+        LOG('%s - Successfully get user info from MSP', method);
+      } catch (e) {
+        LOG('%s - Failed to chat with MSP error: %o', method, e);
+        if (e.code) {
+          return res.status(e.code).send(getResponse(false, e.message));
+        }
+        return res.status(400).send(getResponse(false, e.message));
+      }
+      LOG('%s - Successfully get user info from MSP', method);
+      const registry = await FabricService.createUserFromPersistance(userInfo.id, userInfo.privateKey, userInfo.certificate, userInfo.mspId);
+      const fabricService = new FabricService();
+      const bcResp = await fabricService.invoke('proposal.getall', [ ], registry);
+      res.status(200).send(getResponse(true, 'Success', bcResp));
     } catch (e) {
       LOG('%s - Error: ', method, e);
       res.status(500).send(getResponse(false, e.message));
