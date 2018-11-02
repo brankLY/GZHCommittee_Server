@@ -2,7 +2,7 @@ import * as debug from 'debug';
 import { format } from 'util';
 import { IdGenerator } from '../services/IdGenerator';
 import { IInitMemberRequest } from '../interfaces/member';
-import { ICreateProposalRequest, IVoteProposalRequest, IQueryProposalRequest } from '../interfaces/proposal';
+import { ICreateTxProposalRequest, ICreateMemProposalRequest, IVoteTxProposalRequest, IVoteMemProposalRequest, IQueryProposalRequest } from '../interfaces/proposal';
 
 const LOG = debug('GZHCommittee_Server:Validator');
 
@@ -38,8 +38,8 @@ export class Validator {
     };
   }
   
-  static VALIDATE_CREATE_PROPOSAL_REQUEST(options: any): ICreateProposalRequest {
-    const method: string = 'VALIDATE_CREATE_PROPOSAL_REQUEST';
+  static VALIDATE_CREATE_TX_PROPOSAL_REQUEST(options: any): ICreateTxProposalRequest {
+    const method: string = 'VALIDATE_CREATE_TX_PROPOSAL_REQUEST';
     LOG('%s - Enter', method);
     if (!options) {
       throw new Error('Empty CreateProposalRequest');
@@ -72,6 +72,35 @@ export class Validator {
     };
   }
 
+  static VALIDATE_CREATE_MEM_PROPOSAL_REQUEST(options: any): ICreateMemProposalRequest {
+    const method: string = 'VALIDATE_CREATE_MEM_PROPOSAL_REQUEST';
+    LOG('%s - Enter', method);
+    if (!options) {
+      throw new Error('Empty CreateProposalRequest');
+    }
+    if (!options.type) {
+      throw new Error(format('%j is not a valid CreateProposalRequest Object, Missing Required property %s', options, 'type'));
+    }
+    if (!options.member) {
+      throw new Error(format('%j is not a valid CreateProposalRequest Object, Missing Required property %s', options, 'member'));
+    }
+    if (!options.description) {
+      throw new Error(format('%j is not a valid CreateProposalRequest Object, Missing Required property %s', options, 'description'));
+    }
+    if (!options.deadline) {
+      throw new Error(format('%j is not a valid CreateProposalRequest Object, Missing Required property %s', options, 'deadline'));
+    }
+    LOG('%s - Valid. Exit', method);
+
+    return {
+      type: options.type,
+      deadline: options.deadline,
+      member: options.member,
+      id: IdGenerator.NEW_ID(),
+      description: options.description,
+    };
+  }
+
   static VALIDATE_QUERY_PROPOSAL_REQUEST(options: any): IQueryProposalRequest {
     const method: string = 'VALIDATE_QUERY_PROPOSAL_REQUEST';
     LOG('%s - Enter', method);
@@ -81,15 +110,40 @@ export class Validator {
     if (!options.proposalId) {
       throw new Error(format('%j is not a valid VoteProposalRequest Object, Missing Required property %s', options, 'proposalId'));
     }
+    if (!options.type) {
+      throw new Error(format('%j is not a valid VoteProposalRequest Object, Missing Required property %s', options, 'type'));
+    }
     LOG('%s - Valid. Exit', method);
 
     return {
       proposalId: options.proposalId,
+      type:options.type,
     };
   }
 
-  static VALIDATE_VOTE_PROPOSAL_REQUEST(options: any): IVoteProposalRequest {
-    const method: string = 'VALIDATE_VOTE_PROPOSAL_REQUEST';
+  static VALIDATE_VOTE_TX_PROPOSAL_REQUEST(options: any): IVoteTxProposalRequest {
+    const method: string = 'VALIDATE_VOTE_TX_PROPOSAL_REQUEST';
+    LOG('%s - Enter', method);
+    if (!options) {
+      throw new Error('Empty VoteProposalRequest');
+    }
+    if (!options.proposalId) {
+      throw new Error(format('%j is not a valid VoteProposalRequest Object, Missing Required property %s', options, 'proposalId'));
+    }
+    if (!options.choice) {
+      throw new Error(format('%j is not a valid VoteProposalRequest Object, Missing Required property %s', options, 'choice'));
+    }
+    LOG('%s - Valid. Exit', method);
+
+    return {
+      accountId :' ',
+      proposalId: options.proposalId,
+      choice:options.choice,
+    };
+  }
+
+  static VALIDATE_VOTE_MEM_PROPOSAL_REQUEST(options: any): IVoteMemProposalRequest {
+    const method: string = 'VALIDATE_VOTE_MEM_PROPOSAL_REQUEST';
     LOG('%s - Enter', method);
     if (!options) {
       throw new Error('Empty VoteProposalRequest');

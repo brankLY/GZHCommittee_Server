@@ -1,4 +1,4 @@
-export interface ICreateProposalRequest {
+export interface ICreateTxProposalRequest {
     amount: number;
     target: string;
     deadline: string;
@@ -6,7 +6,21 @@ export interface ICreateProposalRequest {
     id:string;
 }
 
-export interface IVoteProposalRequest {
+export interface ICreateMemProposalRequest {
+    type: string;
+    member: string;
+    deadline: string;
+    description: string;
+    id:string;
+}
+
+export interface IVoteTxProposalRequest {
+	accountId:string;
+    proposalId: string;
+    choice: string;
+}
+
+export interface IVoteMemProposalRequest {
 	accountId:string;
     proposalId: string;
     choice: string;
@@ -14,4 +28,5 @@ export interface IVoteProposalRequest {
 
 export interface IQueryProposalRequest {
     proposalId: string;
+    type: string;
 }

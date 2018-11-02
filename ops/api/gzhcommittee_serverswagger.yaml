@@ -70,12 +70,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AllMemberResponse'
-  /proposal/create:
+  /proposal/createTx:
     post:
       tags:
         - Proposal
-      summary: 创建提案
-      description: 创建提案
+      summary: 创建交易提案
+      description: 创建交易提案
       security:
         - Bearer: []
       responses:
@@ -89,7 +89,29 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateProposalRequest'
+              $ref: '#/components/schemas/CreateTxProposalRequest'
+        description: 当前用户创建提案
+        required: true
+  /proposal/createMem:
+    post:
+      tags:
+        - Proposal
+      summary: 创建人员提案
+      description: 创建人员提案
+      security:
+        - Bearer: []
+      responses:
+        '201':
+          description: Success
+        '401':
+          description: UnAuthorized
+        '405':
+          description: Validation exception
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMemProposalRequest'
         description: 当前用户创建提案
         required: true
   /proposal/query:
@@ -114,12 +136,12 @@ paths:
               $ref: '#/components/schemas/QueryProposalRequest'
         description: 当前用户查询提案
         required: true
-  /proposal/vote:
+  /proposal/voteTx:
     post:
       tags:
         - Proposal
-      summary: 提案投票
-      description: 提案投票
+      summary: 交易提案投票
+      description: 交易提案投票
       security:
         - Bearer: []
       responses:
@@ -133,14 +155,50 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/VoteProposalRequest'
+              $ref: '#/components/schemas/VoteTxProposalRequest'
         required: true
-  /proposal/getAllProposal:
-    get:
-      summary: 获取所有提案id
+  /proposal/voteMem:
+    post:
       tags:
         - Proposal
-      description: 获取所有提案id
+      summary: 人员提案投票
+      description: 人员提案投票
+      security:
+        - Bearer: []
+      responses:
+        '201':
+          description: Success
+        '401':
+          description: UnAuthorized
+        '405':
+          description: Validation exception
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoteMemProposalRequest'
+        required: true
+  /proposal/getAllTxProposal:
+    get:
+      summary: 获取所有交易提案id
+      tags:
+        - Proposal
+      description: 获取所有交易提案id
+      security:
+        - Bearer: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllProposalResponse'
+  /proposal/getAllMemProposal:
+    get:
+      summary: 获取所有人员提案id
+      tags:
+        - Proposal
+      description: 获取所有人员提案id
       security:
         - Bearer: []
       responses:
@@ -231,7 +289,7 @@ components:
                   type: array
                   items:
                     $ref: '#/components/schemas/MinusMemberuInfo'
-    AllProposalResponse:
+    AllTxProposalResponse:
       allOf:
         - $ref: '#/components/schemas/ApiResponse'
         - type: object
@@ -241,7 +299,18 @@ components:
                 bureaus:
                   type: array
                   items:
-                    $ref: '#/components/schemas/MinusProposalInfo'
+                    $ref: '#/components/schemas/MinusTxProposalInfo'
+    AllMemProposalResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            payload:
+              properties:
+                bureaus:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/MinusMemProposalInfo'
     Member:
       type: object
       properties:
@@ -271,14 +340,21 @@ components:
           type: string
           description: member有效性
 
-    MinusProposalInfo:
+    MinusTxProposalInfo:
       type: object
       properties:
         id: 
           type: string
-          description: member id
+          description: proposal id
 
-    CreateProposalRequest:
+    MinusMemProposalInfo:
+      type: object
+      properties:
+        id: 
+          type: string
+          description: proposal id
+
+    CreateTxProposalRequest:
       type: object
       properties:
         amount:
@@ -293,13 +369,40 @@ components:
         description:
           type: string
           description: 提案描述
+    CreateMemProposalRequest:
+      type: object
+      properties:
+        type:
+          type: string
+          description: 类型
+        member:
+          type: string
+          description: 目标id
+        deadline:
+          type: string
+          description: 截止期限
+        description:
+          type: string
+          description: 提案描述
     QueryProposalRequest:
       type: object
       properties:
         proposalId:
           type: string
           description: 提案ID
-    VoteProposalRequest:
+        type:
+          type: string
+          description: 提案类型
+    VoteTxProposalRequest:
+      type: object
+      properties:
+        proposalId:
+          type: string
+          description: 提案ID
+        choice:
+          type: string
+          description: 投票决定（y/Y代表同意）
+    VoteMemProposalRequest:
       type: object
       properties:
         proposalId:
