@@ -5,3 +5,7 @@ export interface IInitMemberRequest {
   member4: string;
   member5: string;
 }
+
+export interface ICheckValidityRequest {
+  id: string;
+}

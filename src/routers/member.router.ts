@@ -5,7 +5,7 @@ import { IUserInfo } from '../interfaces/user';
 import { MspWrapper } from '../services/MspWrapper';
 import { FabricService } from '../services/FabricService';
 import { getResponse } from '../utils/Response';
-import { IInitMemberRequest } from '../interfaces/member';
+import { IInitMemberRequest , ICheckValidityRequest} from '../interfaces/member';
 
 const LOG = debug('GZHCommittee_Server:router');
 
@@ -19,6 +19,7 @@ class MemberRouter {
 
   private init() {
     this.router.post('/init', this.initMember);
+    this.router.post('/init', this.checkValidity);
     this.router.get('/getAllMember', this.getAllMember);
   }
 
@@ -51,6 +52,41 @@ class MemberRouter {
 
       LOG('%s - Exit. 200', method);
       res.status(200).send(getResponse(true, 'Successfully init member', bcResp));
+    } catch (e) {
+      LOG('%s - Error: ', method, e);
+      res.status(500).send(getResponse(false, e.message));
+    }
+  }
+
+  public async checkValidity(req: Request, res: Response) {
+    const method = 'checkValidity';
+    try {
+      LOG('%s - Enter.', method);
+      LOG('%s - request body: %O', method, req.body);
+
+      const checkValidityRequest: ICheckValidityRequest = Validator.VALIDATE_CHECK_MEMBER_VALIDITY(req.body);
+      LOG('%s - Request Body Validate Passed, create token request: %O', method, checkValidityRequest);
+
+      let userInfo: IUserInfo;
+      try {
+        userInfo = await MspWrapper.getUser((<any>req).token);
+        LOG('%s - Successfully get user info from MSP', method);
+      } catch (e) {
+        LOG('%s - Failed to chat with MSP error: %o', method, e);
+        if (e.code) {
+          return res.status(e.code).send(getResponse(false, e.message));
+        }
+        return res.status(400).send(getResponse(false, e.message));
+      }
+      LOG('%s - Successfully get user info from MSP', method);
+      const registry = await FabricService.createUserFromPersistance(userInfo.id, userInfo.privateKey, userInfo.certificate, userInfo.mspId);
+
+      LOG('%s - Create Token at bc', method);
+      const fabricService = new FabricService();
+      const bcResp = await fabricService.invoke('member.checkValidity', [JSON.stringify(checkValidityRequest)], registry);
+
+      LOG('%s - Exit. 200', method);
+      res.status(200).send(getResponse(true, 'Successfully check member', bcResp));
     } catch (e) {
       LOG('%s - Error: ', method, e);
       res.status(500).send(getResponse(false, e.message));

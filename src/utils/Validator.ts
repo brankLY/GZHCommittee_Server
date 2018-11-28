@@ -1,7 +1,7 @@
 import * as debug from 'debug';
 import { format } from 'util';
 import { IdGenerator } from '../services/IdGenerator';
-import { IInitMemberRequest } from '../interfaces/member';
+import { IInitMemberRequest, ICheckValidityRequest } from '../interfaces/member';
 import { ICreateTxProposalRequest, ICreateMemProposalRequest, IVoteTxProposalRequest, IVoteMemProposalRequest, IQueryProposalRequest } from '../interfaces/proposal';
 
 const LOG = debug('GZHCommittee_Server:Validator');
@@ -35,6 +35,21 @@ export class Validator {
       member3: options.member3,
       member4: options.member4,
       member5: options.member5,
+    };
+  }
+
+  static VALIDATE_CHECK_MEMBER_VALIDITY(options: any): ICheckValidityRequest {
+    const method: string = 'VALIDATE_CHECK_MEMBER_VALIDITY';
+    LOG('%s - Enter', method);
+    if (!options) {
+      throw new Error('Empty InitMemberRequest');
+    }
+    if (!options.id) {
+      throw new Error('Missing Required Option Property "id"');
+    }
+    LOG('%s - Valid. Exit', method);
+    return {
+      id: options.id,
     };
   }
   

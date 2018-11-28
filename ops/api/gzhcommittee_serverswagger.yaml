@@ -55,6 +55,27 @@ paths:
             schema:
               $ref: '#/components/schemas/Member'
         required: true
+  /member/checkValidity:
+    post:
+      tags:
+        - Member
+      summary: 查询委员会成员有效性
+      description: 查询委员会成员是否还有效
+      security:
+        - Bearer: []
+      responses:
+        '201':
+          description: Success
+        '401':
+          description: UnAuthorized
+        '405':
+          description: Validation exception
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemberValidity'
+        required: true
   /member/getAllMember:
     get:
       summary: 获取所有委员会成员
@@ -329,6 +350,13 @@ components:
         member5:
           type: string
           description: 委员五
+
+    MemberValidity:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 查询成员id
 
     MinusMemberuInfo:
       type: object
