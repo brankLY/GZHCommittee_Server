@@ -19,7 +19,7 @@ class MemberRouter {
 
   private init() {
     this.router.post('/init', this.initMember);
-    this.router.post('/init', this.checkValidity);
+    this.router.post('/checkValidity', this.checkValidity);
     this.router.get('/getAllMember', this.getAllMember);
   }
 
