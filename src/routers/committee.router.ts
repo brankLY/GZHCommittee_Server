@@ -1,5 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import * as debug from 'debug';
+import { Validator } from '../utils/Validator';
+import { ICreateSSARequest } from '../interfaces/ssa';
 import { IUserInfo } from '../interfaces/user';
 import { MspWrapper } from '../services/MspWrapper';
 import { FabricService } from '../services/FabricService';
@@ -7,7 +9,7 @@ import { getResponse } from '../utils/Response';
 
 const LOG = debug('GZHCommittee_Server:router:Token');
 
-class CommitteeRouter {
+class SSARouter {
   public router: Router;
 
   constructor() {
@@ -16,18 +18,19 @@ class CommitteeRouter {
   }
 
   private init() {
-    this.router.post('/init', this.initCommittee);
+    this.router.post('/create', this.createSSA);
   }
 
   /**
-   * init committee
+   * create SSA
    */
-  public async initCommittee(req: Request, res: Response) {
+  public async createSSA(req: Request, res: Response) {
     const method = 'initCommittee';
     try {
       LOG('%s - Enter.', method);
       LOG('%s - request body: %O', method, req.body);
       
+      const createSSARequest: ICreateSSARequest = Validator.VALIDATE_CTEATE_SSA_REQUEST(req.body);
       let userInfo: IUserInfo;
       try {
         userInfo = await MspWrapper.getUser((<any>req).token);
@@ -42,9 +45,9 @@ class CommitteeRouter {
       LOG('%s - Successfully get user info from MSP', method);
       const registry = await FabricService.createUserFromPersistance(userInfo.id, userInfo.privateKey, userInfo.certificate, userInfo.mspId);
       
-      LOG('%s - init Contract Account at bc', method);
+      LOG('%s - Create SSA at bc', method);
       const fabricService = new FabricService();
-      const bcResp = await fabricService.invoke('committee.init', [], registry);
+      const bcResp = await fabricService.invoke('ssa.create', [JSON.stringify(createSSARequest)], registry);
       
       LOG('%s - Exit. 200', method);
       res.status(200).send(getResponse(true, 'Successfully init committee', bcResp));
@@ -55,4 +58,4 @@ class CommitteeRouter {
   }
 }
 
-export default new CommitteeRouter().router;
+export default new SSARouter().router;

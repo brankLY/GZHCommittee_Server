@@ -6,8 +6,8 @@ info:
   version: 0.0.1
   title: Dapp API 文档
 tags:
-  - name: Committee
-    description: 委员会相关API
+  - name: SSA
+    description: ssa相关API
   - name: Member
     description: 成员相关API
   - name: Proposal
@@ -16,15 +16,13 @@ tags:
     description: 认证相关API
 
 paths:
-  #Committee
-  /committee/init:
+  #SSA
+  /ssa/create:
     post:
       tags:
-        - Committee
-      summary: 初始化委员会
-      description: 使用委员会需要初始化委员会
-      security:
-        - Bearer: []
+        - SSA
+      summary: 创建sssa
+      description: 创建sssa
       responses:
         '200':
           description: Success
@@ -34,6 +32,12 @@ paths:
           description: Validation exception
         '500':
           description: Error
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SSA'
+        required: true
   /member/init:
     post:
       tags:
@@ -332,6 +336,13 @@ components:
                   type: array
                   items:
                     $ref: '#/components/schemas/MinusMemProposalInfo'
+    SSA:
+      type: object
+      properties:
+        name:
+          type: string
+          description: sss名称
+
     Member:
       type: object
       properties:

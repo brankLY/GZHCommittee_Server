@@ -2,6 +2,7 @@ import * as debug from 'debug';
 import { format } from 'util';
 import { IdGenerator } from '../services/IdGenerator';
 import { IInitMemberRequest, ICheckValidityRequest } from '../interfaces/member';
+import { ICreateSSARequest } from '../interfaces/ssa';
 import { ICreateTxProposalRequest, ICreateMemProposalRequest, IVoteTxProposalRequest, IVoteMemProposalRequest, IQueryProposalRequest } from '../interfaces/proposal';
 
 const LOG = debug('GZHCommittee_Server:Validator');
@@ -35,6 +36,22 @@ export class Validator {
       member3: options.member3,
       member4: options.member4,
       member5: options.member5,
+    };
+  }
+
+  static VALIDATE_CTEATE_SSA_REQUEST(options: any): ICreateSSARequest {
+    const method: string = 'VALIDATE_CTEATE_SSA_REQUEST';
+    LOG('%s - Enter', method);
+    if (!options) {
+      throw new Error('Empty InitMemberRequest');
+    }
+    if (!options.name) {
+      throw new Error('Missing Required Option Property "name"');
+    }
+    LOG('%s - Valid. Exit', method);
+    return {
+      id: IdGenerator.NEW_ID(),
+      name: options.name,
     };
   }
 
