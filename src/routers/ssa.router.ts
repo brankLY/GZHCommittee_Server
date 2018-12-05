@@ -31,6 +31,8 @@ class SSARouter {
       LOG('%s - request body: %O', method, req.body);
       
       const createSSARequest: ICreateSSARequest = Validator.VALIDATE_CTEATE_SSA_REQUEST(req.body);
+      LOG('%s - Request Body Validate Passed, create proposal request: %O', method, createSSARequest);
+
       let userInfo: IUserInfo;
       try {
         userInfo = await MspWrapper.getUser((<any>req).token);
@@ -50,7 +52,7 @@ class SSARouter {
       const bcResp = await fabricService.invoke('ssa.create', [JSON.stringify(createSSARequest)], registry);
       
       LOG('%s - Exit. 200', method);
-      res.status(200).send(getResponse(true, 'Successfully init committee', bcResp));
+      res.status(200).send(getResponse(true, 'Successfully create ssa', bcResp));
     } catch (e) {
       LOG('%s - Error: ', method, e);
       res.status(500).send(getResponse(false, e.message));
