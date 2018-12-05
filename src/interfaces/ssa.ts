@@ -3,3 +3,6 @@ export interface ICreateSSARequest {
   name: string;  
 }
 
+export interface IQuerySSARequest{
+	id: string;
+}

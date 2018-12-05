@@ -2,7 +2,7 @@ import * as debug from 'debug';
 import { format } from 'util';
 import { IdGenerator } from '../services/IdGenerator';
 import { IInitMemberRequest, ICheckValidityRequest } from '../interfaces/member';
-import { ICreateSSARequest } from '../interfaces/ssa';
+import { ICreateSSARequest, IQuerySSARequest } from '../interfaces/ssa';
 import { ICreateTxProposalRequest, ICreateMemProposalRequest, IVoteTxProposalRequest, IVoteMemProposalRequest, IQueryProposalRequest } from '../interfaces/proposal';
 
 const LOG = debug('GZHCommittee_Server:Validator');
@@ -130,6 +130,22 @@ export class Validator {
       member: options.member,
       id: IdGenerator.NEW_ID(),
       description: options.description,
+    };
+  }
+
+  static VALIDATE_QUERY_SSA_REQUEST(options: any): IQuerySSARequest {
+    const method: string = 'VALIDATE_QUERY_PROPOSAL_REQUEST';
+    LOG('%s - Enter', method);
+    if (!options) {
+      throw new Error('Empty VoteProposalRequest');
+    }
+    if (!options.id) {
+      throw new Error(format('%j is not a valid VoteProposalRequest Object, Missing Required property %s', options, 'proposalId'));
+    }
+    LOG('%s - Valid. Exit', method);
+
+    return {
+      id: options.id,
     };
   }
 
