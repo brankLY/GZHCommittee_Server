@@ -25,7 +25,7 @@ class SSARouter {
    * create SSA
    */
   public async createSSA(req: Request, res: Response) {
-    const method = 'initCommittee';
+    const method = 'createSSA';
     try {
       LOG('%s - Enter.', method);
       LOG('%s - request body: %O', method, req.body);

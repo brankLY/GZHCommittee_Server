@@ -6,7 +6,7 @@ import * as JWT from 'express-jwt';
 import { getResponse } from './utils/Response';
 import bearerToken = require('express-bearer-token');
 
-import CommitteeRouter from './routers/committee.router';
+import SSARouter from './routers/ssa.router';
 import MemberRouter from './routers/member.router';
 import ProposalRouter from './routers/proposal.router';
 import AuthRouter from './routers/auth.router';
@@ -46,7 +46,7 @@ class App {
   
   // Configure API endpoints.
   private routes(): void {
-    this.express.use('/api/v1/committee', CommitteeRouter);
+    this.express.use('/api/v1/ssa', SSARouter);
     this.express.use('/api/v1/member', MemberRouter);
     this.express.use('/api/v1/proposal', ProposalRouter);
     this.express.use('/api/v1/auth', AuthRouter);
