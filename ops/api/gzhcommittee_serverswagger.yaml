@@ -23,15 +23,15 @@ paths:
         - SSA
       summary: 创建sssa
       description: 创建sssa
+      security:
+        - Bearer: []
       responses:
-        '200':
+        '201':
           description: Success
         '401':
           description: UnAuthorized
-        '400':
+        '405':
           description: Validation exception
-        '500':
-          description: Error
       requestBody:
         content:
           application/json:
