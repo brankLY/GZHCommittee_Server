@@ -140,7 +140,7 @@ export class Validator {
       throw new Error('Empty VoteProposalRequest');
     }
     if (!options.id) {
-      throw new Error(format('%j is not a valid VoteProposalRequest Object, Missing Required property %s', options, 'proposalId'));
+      throw new Error(format('%j is not a valid VoteProposalRequest Object, Missing Required property %s', options, 'id'));
     }
     LOG('%s - Valid. Exit', method);
 
