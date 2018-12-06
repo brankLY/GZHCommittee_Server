@@ -86,7 +86,7 @@ class SSARouter {
       
       LOG('%s - Create SSA at bc', method);
       const fabricService = new FabricService();
-      const bcResp = await fabricService.invoke('ssa.create', [JSON.stringify(createSupportRequest)], registry);
+      const bcResp = await fabricService.invoke('ssa.support', [JSON.stringify(createSupportRequest)], registry);
       
       LOG('%s - Exit. 200', method);
       res.status(200).send(getResponse(true, 'Successfully create ssa', bcResp));
