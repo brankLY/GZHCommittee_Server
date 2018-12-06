@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import * as debug from 'debug';
 import { Validator } from '../utils/Validator';
-import { ICreateSSARequest, IQuerySSARequest } from '../interfaces/ssa';
+import { ICreateSSARequest, IQuerySSARequest, ICreateSupportRequest } from '../interfaces/ssa';
 import { IUserInfo } from '../interfaces/user';
 import { MspWrapper } from '../services/MspWrapper';
 import { FabricService } from '../services/FabricService';
