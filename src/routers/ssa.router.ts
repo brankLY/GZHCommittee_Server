@@ -60,6 +60,41 @@ class SSARouter {
     }
   }
 
+  public async createSupport(req: Request, res: Response) {
+    const method = 'createSupport';
+    try {
+      LOG('%s - Enter.', method);
+      LOG('%s - request body: %O', method, req.body);
+      
+      const createSupportRequest: ICreateSupportRequest = Validator.VALIDATE_CTEATE_SUPPORT_REQUEST(req.body);
+      LOG('%s - Request Body Validate Passed, create proposal request: %O', method, createSupportRequest);
+
+      let userInfo: IUserInfo;
+      try {
+        userInfo = await MspWrapper.getUser((<any>req).token);
+        LOG('%s - Successfully get user info from MSP', method);
+      } catch (e) {
+        LOG('%s - Failed to chat with MSP error: %o', method, e);
+        if (e.code) {
+          return res.status(e.code).send(getResponse(false, e.message));
+        }
+        return res.status(400).send(getResponse(false, e.message));
+      }
+      LOG('%s - Successfully get user info from MSP', method);
+      const registry = await FabricService.createUserFromPersistance(userInfo.id, userInfo.privateKey, userInfo.certificate, userInfo.mspId);
+      
+      LOG('%s - Create SSA at bc', method);
+      const fabricService = new FabricService();
+      const bcResp = await fabricService.invoke('ssa.create', [JSON.stringify(createSupportRequest)], registry);
+      
+      LOG('%s - Exit. 200', method);
+      res.status(200).send(getResponse(true, 'Successfully create ssa', bcResp));
+    } catch (e) {
+      LOG('%s - Error: ', method, e);
+      res.status(500).send(getResponse(false, e.message));
+    }
+  }
+
   public async querySSA(req: Request, res: Response, next: NextFunction) {
     const method = 'querySSA';
     try {

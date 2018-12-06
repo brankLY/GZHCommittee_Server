@@ -6,3 +6,10 @@ export interface ICreateSSARequest {
 export interface IQuerySSARequest{
 	id: string;
 }
+
+export interface ICreateSupportRequest{
+	id: string;
+	ssaID: string;
+    amount: number;
+    description: string;
+}

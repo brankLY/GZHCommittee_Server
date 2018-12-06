@@ -2,7 +2,7 @@ import * as debug from 'debug';
 import { format } from 'util';
 import { IdGenerator } from '../services/IdGenerator';
 import { IInitMemberRequest, ICheckValidityRequest } from '../interfaces/member';
-import { ICreateSSARequest, IQuerySSARequest } from '../interfaces/ssa';
+import { ICreateSSARequest, IQuerySSARequest, ICreateSupportRequest } from '../interfaces/ssa';
 import { ICreateTxProposalRequest, ICreateMemProposalRequest, IVoteTxProposalRequest, IVoteMemProposalRequest, IQueryProposalRequest } from '../interfaces/proposal';
 
 const LOG = debug('GZHCommittee_Server:Validator');
@@ -52,6 +52,30 @@ export class Validator {
     return {
       id: IdGenerator.NEW_ID(),
       name: options.name,
+    };
+  }
+
+  static VALIDATE_CTEATE_SUPPORT_REQUEST(options: any): ICreateSupportRequest {
+    const method: string = 'VALIDATE_CTEATE_SUPPORT_REQUEST';
+    LOG('%s - Enter', method);
+    if (!options) {
+      throw new Error('Empty InitMemberRequest');
+    }
+    if (!options.ssaID) {
+      throw new Error('Missing Required Option Property "ssaID"');
+    }
+    if (!options.amount) {
+      throw new Error('Missing Required Option Property "amount"');
+    }
+    if (!options.description) {
+      throw new Error('Missing Required Option Property "description"');
+    }
+    LOG('%s - Valid. Exit', method);
+    return {
+      id: IdGenerator.NEW_ID(),
+      ssaID: options.ssaID,
+      amount: options.amount,
+      description: options.description,
     };
   }
 

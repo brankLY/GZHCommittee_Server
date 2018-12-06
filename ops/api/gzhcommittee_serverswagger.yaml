@@ -21,8 +21,8 @@ paths:
     post:
       tags:
         - SSA
-      summary: 创建sssa
-      description: 创建sssa
+      summary: 创建ssa
+      description: 创建ssa
       security:
         - Bearer: []
       responses:
@@ -37,6 +37,27 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SSA'
+        required: true
+  /ssa/support:
+    post:
+      tags:
+        - SSA
+      summary: 应援
+      description: 创建sssa
+      security:
+        - Bearer: []
+      responses:
+        '201':
+          description: Success
+        '401':
+          description: UnAuthorized
+        '405':
+          description: Validation exception
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSupportRequest'
         required: true
   /ssa/ssa/{id}:
     get:
@@ -421,6 +442,21 @@ components:
         id:
           type: string
           description: ssaID
+    CreateSupportRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: support id
+        ssaID:
+          type: string
+          description: ssa ID
+        amount:
+          type: number
+          description: 数量
+        description:
+          type: string
+          description: 备注
     CreateTxProposalRequest:
       type: object
       properties:
