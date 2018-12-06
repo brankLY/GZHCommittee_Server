@@ -66,7 +66,7 @@ class SSARouter {
       LOG('%s - Enter.', method);
       LOG('%s - request body: %O', method, req.body);
 
-      let queryProposalRequest: IQuerySSARequest = Validator.VALIDATE_QUERY_SSA_REQUEST(req.body);
+      let queryProposalRequest: IQuerySSARequest = Validator.VALIDATE_QUERY_SSA_REQUEST(req.params);
       LOG('%s - Request Body Validate Passed, query proposal request: %O', method, queryProposalRequest);
 
       let userInfo: IUserInfo;
