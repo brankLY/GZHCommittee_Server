@@ -445,9 +445,6 @@ components:
     CreateSupportRequest:
       type: object
       properties:
-        id:
-          type: string
-          description: support id
         ssaID:
           type: string
           description: ssa ID
