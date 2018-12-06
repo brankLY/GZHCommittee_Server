@@ -424,6 +424,9 @@ components:
     CreateTxProposalRequest:
       type: object
       properties:
+        ssaID:
+          type: string
+          description: ssa ID
         amount:
           type: number
           description: 数量

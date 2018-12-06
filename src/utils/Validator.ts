@@ -76,6 +76,9 @@ export class Validator {
     if (!options) {
       throw new Error('Empty CreateProposalRequest');
     }
+    if (!options.ssaID) {
+      throw new Error(format('%j is not a valid CreateProposalRequest Object, Missing Required property %s', options, 'ssaID'));
+    }
     if (!options.amount) {
       throw new Error(format('%j is not a valid CreateProposalRequest Object, Missing Required property %s', options, 'amount'));
     }
@@ -96,6 +99,7 @@ export class Validator {
     }
 
     return {
+      ssaID: ssaID,
       amount: amount,
       deadline: options.deadline,
       target: options.target,
