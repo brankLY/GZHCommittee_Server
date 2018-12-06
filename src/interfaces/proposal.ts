@@ -29,6 +29,6 @@ export interface IVoteMemProposalRequest {
 }
 
 export interface IQueryProposalRequest {
-    proposalId: string;
+    proposalID: string;
     type: string;
 }
