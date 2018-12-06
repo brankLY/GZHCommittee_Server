@@ -19,6 +19,7 @@ class SSARouter {
 
   private init() {
     this.router.post('/create', this.createSSA);
+    this.router.get('/ssa', this.querySSA);
   }
 
   /**
