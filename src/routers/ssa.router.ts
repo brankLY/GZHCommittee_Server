@@ -60,13 +60,13 @@ class SSARouter {
     }
   }
 
-  public async querySSA(req: Request, res: Response) {
+  public async querySSA(req: Request, res: Response, next: NextFunction) {
     const method = 'querySSA';
     try {
       LOG('%s - Enter.', method);
-      LOG('%s - request body: %O', method, req.body);
+      LOG('%s - request params: %O', method, req.params);
 
-      let queryProposalRequest: IQuerySSARequest = Validator.VALIDATE_QUERY_SSA_REQUEST(req.params);
+      const queryProposalRequest: IQuerySSARequest = Validator.VALIDATE_QUERY_SSA_REQUEST(req.params);
       LOG('%s - Request Body Validate Passed, query proposal request: %O', method, queryProposalRequest);
 
       let userInfo: IUserInfo;
@@ -87,7 +87,7 @@ class SSARouter {
       const bcResp = await fabricService.invoke('ssa.query', [JSON.stringify(queryProposalRequest)], registry);
 
       LOG('%s - Exit. 200', method);
-      res.status(200).send(getResponse(true, 'Successfully query proposal', bcResp));
+      res.status(200).send(getResponse(true, 'Successfully query ssa', bcResp));
     } catch (e) {
       LOG('%s - Error: ', method, e);
       res.status(500).send(getResponse(false, e.message));
