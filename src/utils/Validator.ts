@@ -99,7 +99,7 @@ export class Validator {
     }
 
     return {
-      ssaID: ssaID,
+      ssaID: options.ssaID,
       amount: amount,
       deadline: options.deadline,
       target: options.target,
