@@ -46,20 +46,20 @@ paths:
       description: 查询ssa
       security:
         - Bearer: []
+      parameters:
+        - name: id
+          in: path
+          description: 'The contract account id that needs to be fetched.'
+          required: true
+          schema:
+            type: string
       responses:
-        '201':
-          description: Success
-        '401':
-          description: UnAuthorized
-        '405':
-          description: Validation exception
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/QuerySSARequest'
-        description: 当前用户查询ssa
-        required: true
+        '200':
+          description: successful operation
+        '400':
+          description: 请求不正确
+        '404':
+          description: Account not found
   /member/init:
     post:
       tags:
