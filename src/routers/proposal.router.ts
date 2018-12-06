@@ -156,7 +156,7 @@ class ProposalRouter {
 
       LOG('%s - Create Token at bc', method);
       const fabricService = new FabricService();
-      voteProposalRequest.accountId = userInfo.id;
+      voteProposalRequest.accountID = userInfo.id;
       const bcResp = await fabricService.invoke('proposal.voteTx', [JSON.stringify(voteProposalRequest)], registry);
 
       LOG('%s - Exit. 200', method);
@@ -192,7 +192,7 @@ class ProposalRouter {
 
       LOG('%s - Create Token at bc', method);
       const fabricService = new FabricService();
-      voteProposalRequest.accountId = userInfo.id;
+      voteProposalRequest.accountID = userInfo.id;
       const bcResp = await fabricService.invoke('proposal.voteMem', [JSON.stringify(voteProposalRequest)], registry);
 
       LOG('%s - Exit. 200', method);

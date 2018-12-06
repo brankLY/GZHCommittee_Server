@@ -183,8 +183,8 @@ export class Validator {
     if (!options) {
       throw new Error('Empty VoteProposalRequest');
     }
-    if (!options.proposalId) {
-      throw new Error(format('%j is not a valid VoteProposalRequest Object, Missing Required property %s', options, 'proposalId'));
+    if (!options.proposalID) {
+      throw new Error(format('%j is not a valid VoteProposalRequest Object, Missing Required property %s', options, 'proposalID'));
     }
     if (!options.type) {
       throw new Error(format('%j is not a valid VoteProposalRequest Object, Missing Required property %s', options, 'type'));
@@ -192,7 +192,7 @@ export class Validator {
     LOG('%s - Valid. Exit', method);
 
     return {
-      proposalId: options.proposalId,
+      proposalID: options.proposalID,
       type:options.type,
     };
   }
@@ -203,8 +203,11 @@ export class Validator {
     if (!options) {
       throw new Error('Empty VoteProposalRequest');
     }
-    if (!options.proposalId) {
-      throw new Error(format('%j is not a valid VoteProposalRequest Object, Missing Required property %s', options, 'proposalId'));
+    if (!options.proposalID) {
+      throw new Error(format('%j is not a valid VoteProposalRequest Object, Missing Required property %s', options, 'proposalID'));
+    }
+    if (!options.amount) {
+      throw new Error(format('%j is not a valid VoteProposalRequest Object, Missing Required property %s', options, 'amount'));
     }
     if (!options.choice) {
       throw new Error(format('%j is not a valid VoteProposalRequest Object, Missing Required property %s', options, 'choice'));
@@ -212,8 +215,9 @@ export class Validator {
     LOG('%s - Valid. Exit', method);
 
     return {
-      accountId :' ',
-      proposalId: options.proposalId,
+      accountID :' ',
+      amount: options.amount,
+      proposalID: options.proposalID,
       choice:options.choice,
     };
   }
@@ -224,8 +228,8 @@ export class Validator {
     if (!options) {
       throw new Error('Empty VoteProposalRequest');
     }
-    if (!options.proposalId) {
-      throw new Error(format('%j is not a valid VoteProposalRequest Object, Missing Required property %s', options, 'proposalId'));
+    if (!options.proposalID) {
+      throw new Error(format('%j is not a valid VoteProposalRequest Object, Missing Required property %s', options, 'proposalID'));
     }
     if (!options.choice) {
       throw new Error(format('%j is not a valid VoteProposalRequest Object, Missing Required property %s', options, 'choice'));
@@ -233,8 +237,8 @@ export class Validator {
     LOG('%s - Valid. Exit', method);
 
     return {
-      accountId :' ',
-      proposalId: options.proposalId,
+      accountID :' ',
+      proposalID: options.proposalID,
       choice:options.choice,
     };
   }

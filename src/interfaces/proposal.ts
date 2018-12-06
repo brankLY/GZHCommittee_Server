@@ -16,14 +16,15 @@ export interface ICreateMemProposalRequest {
 }
 
 export interface IVoteTxProposalRequest {
-	accountId:string;
-    proposalId: string;
+	accountID:string;
+    proposalID: string;
+    amount: number;
     choice: string;
 }
 
 export interface IVoteMemProposalRequest {
-	accountId:string;
-    proposalId: string;
+	accountID:string;
+    proposalID: string;
     choice: string;
 }
 

@@ -490,7 +490,7 @@ components:
     QueryProposalRequest:
       type: object
       properties:
-        proposalId:
+        proposalID:
           type: string
           description: 提案ID
         type:
@@ -499,16 +499,19 @@ components:
     VoteTxProposalRequest:
       type: object
       properties:
-        proposalId:
+        proposalID:
           type: string
           description: 提案ID
+        amount:
+          type: number
+          description: 投票票数
         choice:
           type: string
           description: 投票决定（y/Y代表同意）
     VoteMemProposalRequest:
       type: object
       properties:
-        proposalId:
+        proposalID:
           type: string
           description: 提案ID
         choice:
