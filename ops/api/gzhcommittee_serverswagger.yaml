@@ -454,6 +454,9 @@ components:
         description:
           type: string
           description: 备注
+        accountID:
+          type: string
+          description: account ID
     CreateTxProposalRequest:
       type: object
       properties:

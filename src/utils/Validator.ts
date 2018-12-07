@@ -64,6 +64,9 @@ export class Validator {
     if (!options.ssaID) {
       throw new Error('Missing Required Option Property "ssaID"');
     }
+    if (!options.accountID) {
+      throw new Error('Missing Required Option Property "accountID"');
+    }
     if (!options.amount) {
       throw new Error('Missing Required Option Property "amount"');
     }
@@ -74,6 +77,7 @@ export class Validator {
     return {
       id: IdGenerator.NEW_ID(),
       ssaID: options.ssaID,
+      accountID: options.accountID,
       amount: options.amount,
       description: options.description,
     };
