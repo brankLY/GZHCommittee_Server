@@ -9,3 +9,7 @@ export interface IInitMemberRequest {
 export interface ICheckValidityRequest {
   id: string;
 }
+
+export interface IQueryMemberRequest{
+	id: string;
+}

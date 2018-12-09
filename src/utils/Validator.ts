@@ -1,7 +1,7 @@
 import * as debug from 'debug';
 import { format } from 'util';
 import { IdGenerator } from '../services/IdGenerator';
-import { IInitMemberRequest, ICheckValidityRequest } from '../interfaces/member';
+import { IInitMemberRequest, ICheckValidityRequest, IQueryMemberRequest } from '../interfaces/member';
 import { ICreateSSARequest, IQuerySSARequest, ICreateSupportRequest } from '../interfaces/ssa';
 import { ICreateTxProposalRequest, ICreateMemProposalRequest, IVoteTxProposalRequest, IVoteMemProposalRequest, IQueryProposalRequest } from '../interfaces/proposal';
 
@@ -173,6 +173,22 @@ export class Validator {
     }
     if (!options.id) {
       throw new Error(format('%j is not a valid QuerySSAReques Object, Missing Required property %s', options, 'id'));
+    }
+    LOG('%s - Valid. Exit', method);
+
+    return {
+      id: options.id,
+    };
+  }
+
+  static VALIDATE_QUERY_MEMBER_REQUEST(options: any): IQueryMemberRequest {
+    const method: string = 'VALIDATE_QUERY_MEMBER_REQUEST';
+    LOG('%s - Enter', method);
+    if (!options) {
+      throw new Error('Empty QueryMemberReques');
+    }
+    if (!options.id) {
+      throw new Error(format('%j is not a valid QueryMemberReques Object, Missing Required property %s', options, 'id'));
     }
     LOG('%s - Valid. Exit', method);
 
