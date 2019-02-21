@@ -61,7 +61,7 @@ organizations:
 
 orderers:
   orderer.example.com:
-    url: grpc://52.15.91.107:7050
+    url: grpc://114.115.158.243:7050
 
     grpcOptions:
       ssl-target-name-override: orderer.example.com
@@ -72,10 +72,10 @@ orderers:
 peers:
   peer0.org1.example.com:
     # this URL is used to send endorsement and query requests
-    url: grpc://52.15.91.107:7051
+    url: grpc://114.115.158.243:7051
 
     # this URL is used to connect the EventHub and registering event listeners
-    eventUrl: grpc://52.15.91.107:7053
+    eventUrl: grpc://114.115.158.243:7053
 
     grpcOptions:
       ssl-target-name-override: peer0.org1.example.com
@@ -85,8 +85,8 @@ peers:
       path: ops/network/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
 
   peer0.org2.example.com:
-    url: grpc://52.15.91.107:8051
-    eventUrl: grpc://52.15.91.107:8053
+    url: grpc://114.115.158.243:8051
+    eventUrl: grpc://114.115.158.243:8053
     grpcOptions:
       ssl-target-name-override: peer0.org2.example.com
     tlsCACerts:

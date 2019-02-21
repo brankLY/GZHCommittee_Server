@@ -11,10 +11,10 @@ module.exports = shipit => {
       deleteOnRollback: false,
       branch: 'master',
       deployTo: '/home/ubuntu/api/GZHCommittee_server',
-      repositoryUrl: 'git@github.com:XDMu/GZHCommittee_server.git',
+      repositoryUrl: 'git@github.com:brankLY/GZHCommittee_server.git',
     },
     staging: {
-      servers: 'ubuntu@dev',
+      servers: 'root@dev',
     }
   });
 

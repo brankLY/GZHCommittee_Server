@@ -25,7 +25,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/XDMu/GZHCommittee_Server.git"
+    "url": "git+ssh://git@github.com/brankLY/GZHCommittee_Server.git"
   },
   "keywords": [
     "rest-server",
@@ -36,9 +36,9 @@
   "author": "BrankLY",
   "license": "SEE LICENSE IN LICENSE.md",
   "bugs": {
-    "url": "https://github.com/XDMu/GZHCommittee_Server/issues"
+    "url": "https://github.com/brankLY/GZHCommittee_Server/issues"
   },
-  "homepage": "https://github.com/XDMu/GZHCommittee_Server#readme",
+  "homepage": "https://github.com/brankLY/GZHCommittee_Server#readme",
   "dependencies": {
     "axios": "0.18.0",
     "body-parser": "1.18.3",
