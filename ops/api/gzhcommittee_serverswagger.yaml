@@ -402,7 +402,7 @@ components:
                   type: array
                   items:
                     $ref: '#/components/schemas/MinusMemProposalInfo'
-    SSA:
+    SPV:
       type: object
       properties:
         name:
@@ -458,18 +458,18 @@ components:
         id: 
           type: string
           description: proposal id
-    QuerySSARequest:
+    QuerySPVRequest:
       type: object
       properties:
         id:
           type: string
-          description: ssaID
+          description: spvID
     CreateSupportRequest:
       type: object
       properties:
-        ssaID:
+        spvID:
           type: string
-          description: ssa ID
+          description: spv ID
         amount:
           type: number
           description: 数量
@@ -482,9 +482,9 @@ components:
     CreateTxProposalRequest:
       type: object
       properties:
-        ssaID:
+        spvID:
           type: string
-          description: ssa ID
+          description: spv ID
         amount:
           type: number
           description: 数量
