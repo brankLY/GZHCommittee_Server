@@ -10,7 +10,7 @@ module.exports = shipit => {
       keepReleases: 10,
       deleteOnRollback: false,
       branch: 'master',
-      deployTo: '/home/ubuntu/api/GZHCommittee_server',
+      deployTo: '/root/api/GZHCommittee_server',
       repositoryUrl: 'git@github.com:brankLY/GZHCommittee_server.git',
     },
     staging: {

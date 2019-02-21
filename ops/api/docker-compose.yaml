@@ -12,7 +12,6 @@ services:
         image: swaggerapi/swagger-ui
         environment:
             - SWAGGER_JSON=/opt/gzhcommittee_serverswagger/gzhcommittee_serverswagger.yaml
-        working_dir: /opt/gzhcommittee_serverswagger/Dapp
         ports:
             - 8082:8080
         volumes:
