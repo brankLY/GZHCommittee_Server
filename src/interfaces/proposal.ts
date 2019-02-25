@@ -1,5 +1,5 @@
 export interface ICreateTxProposalRequest {
-    ssaID: string;
+    spvID: string;
     amount: number;
     target: string;
     deadline: string;

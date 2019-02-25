@@ -1,15 +1,15 @@
-export interface ICreateSSARequest {
+export interface ICreateSPVRequest {
   id: string;
   name: string;  
 }
 
-export interface IQuerySSARequest{
+export interface IQuerySPVRequest{
 	id: string;
 }
 
 export interface ICreateSupportRequest{
 	id: string;
-	ssaID: string;
+	spvID: string;
 	accountID: string;
     amount: number;
     description: string;
