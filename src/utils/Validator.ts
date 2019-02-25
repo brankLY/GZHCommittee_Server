@@ -2,7 +2,7 @@ import * as debug from 'debug';
 import { format } from 'util';
 import { IdGenerator } from '../services/IdGenerator';
 import { IInitMemberRequest, ICheckValidityRequest, IQueryMemberRequest } from '../interfaces/member';
-import { ICreateSSARequest, IQuerySSARequest, ICreateSupportRequest } from '../interfaces/ssa';
+import { ICreateSPVRequest, IQuerySPVRequest, ICreateSupportRequest } from '../interfaces/spv';
 import { ICreateTxProposalRequest, ICreateMemProposalRequest, IVoteTxProposalRequest, IVoteMemProposalRequest, IQueryProposalRequest } from '../interfaces/proposal';
 
 const LOG = debug('GZHCommittee_Server:Validator');
@@ -39,8 +39,8 @@ export class Validator {
     };
   }
 
-  static VALIDATE_CTEATE_SSA_REQUEST(options: any): ICreateSSARequest {
-    const method: string = 'VALIDATE_CTEATE_SSA_REQUEST';
+  static VALIDATE_CTEATE_SPV_REQUEST(options: any): ICreateSPVRequest {
+    const method: string = 'VALIDATE_CTEATE_SPV_REQUEST';
     LOG('%s - Enter', method);
     if (!options) {
       throw new Error('Empty InitMemberRequest');
@@ -61,8 +61,8 @@ export class Validator {
     if (!options) {
       throw new Error('Empty InitMemberRequest');
     }
-    if (!options.ssaID) {
-      throw new Error('Missing Required Option Property "ssaID"');
+    if (!options.spvID) {
+      throw new Error('Missing Required Option Property "spvID"');
     }
     if (!options.accountID) {
       throw new Error('Missing Required Option Property "accountID"');
@@ -76,7 +76,7 @@ export class Validator {
     LOG('%s - Valid. Exit', method);
     return {
       id: IdGenerator.NEW_ID(),
-      ssaID: options.ssaID,
+      spvID: options.spvID,
       accountID: options.accountID,
       amount: options.amount,
       description: options.description,
@@ -104,8 +104,8 @@ export class Validator {
     if (!options) {
       throw new Error('Empty CreateProposalRequest');
     }
-    if (!options.ssaID) {
-      throw new Error(format('%j is not a valid CreateProposalRequest Object, Missing Required property %s', options, 'ssaID'));
+    if (!options.spvID) {
+      throw new Error(format('%j is not a valid CreateProposalRequest Object, Missing Required property %s', options, 'spvID'));
     }
     if (!options.amount) {
       throw new Error(format('%j is not a valid CreateProposalRequest Object, Missing Required property %s', options, 'amount'));
@@ -127,7 +127,7 @@ export class Validator {
     }
 
     return {
-      ssaID: options.ssaID,
+      spvID: options.spvID,
       amount: amount,
       deadline: options.deadline,
       target: options.target,
@@ -165,14 +165,14 @@ export class Validator {
     };
   }
 
-  static VALIDATE_QUERY_SSA_REQUEST(options: any): IQuerySSARequest {
+  static VALIDATE_QUERY_SPV_REQUEST(options: any): IQuerySPVRequest {
     const method: string = 'VALIDATE_QUERY_PROPOSAL_REQUEST';
     LOG('%s - Enter', method);
     if (!options) {
-      throw new Error('Empty QuerySSAReques');
+      throw new Error('Empty QuerySPVReques');
     }
     if (!options.id) {
-      throw new Error(format('%j is not a valid QuerySSAReques Object, Missing Required property %s', options, 'id'));
+      throw new Error(format('%j is not a valid QuerySPVReques Object, Missing Required property %s', options, 'id'));
     }
     LOG('%s - Valid. Exit', method);
 
